@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hello_rectangle/unit.dart';
 
-class ConverterScreen extends StatelessWidget {
+class ConverterScreen extends StatefulWidget {
   final String name;
   final Color color;
   final List<Unit> units;
@@ -10,21 +10,33 @@ class ConverterScreen extends StatelessWidget {
     @required this.name,
     @required this.color,
     @required this.units,
-  })  : assert(name != null),
+  })
+      : assert(name != null),
         assert(color != null),
         assert(units != null);
 
   @override
+  State<StatefulWidget> createState() => _ConverterScreenState();
+}
+
+class _ConverterScreenState extends State<ConverterScreen> {
+  @override
   Widget build(BuildContext context) {
-    final unitWidgets = units.map((Unit unit) {
+    final unitWidgets = widget.units.map((Unit unit) {
       return Container(
-        color: color,
+        color: widget.color,
         margin: EdgeInsets.all(8),
         padding: EdgeInsets.all(16),
         child: Column(
           children: <Widget>[
-            Text(unit.name, style: Theme.of(context).textTheme.headline,),
-            Text('Conversion: ${unit.conversion}', style: Theme.of(context).textTheme.subhead,),
+            Text(unit.name, style: Theme
+                .of(context)
+                .textTheme
+                .headline,),
+            Text('Conversion: ${unit.conversion}', style: Theme
+                .of(context)
+                .textTheme
+                .subhead,),
           ],
         ),
       );
