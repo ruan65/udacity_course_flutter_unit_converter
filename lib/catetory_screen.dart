@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello_rectangle/category.dart';
+import 'package:hello_rectangle/unit.dart';
 
 final _backgroundColor = Colors.green[100];
 
@@ -35,6 +36,16 @@ class CategoryScreen extends StatelessWidget {
     );
   }
 
+  List<Unit> _retrieveUnitList(String categoryName){
+    return List.generate(10, (int i){
+      i += 1;
+      return Unit(
+        name: '$categoryName Unit $i',
+        conversion: i.toDouble(),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -44,8 +55,10 @@ class CategoryScreen extends StatelessWidget {
       categories.add(Category(
           name: _categoryNames[i],
           color: _baseColors[i],
-          iconLocation: Icons.cake));
-    }
+          iconLocation: Icons.cake,
+          units: _retrieveUnitList(_categoryNames[i]),
+      ));
+      }
 
     final listView = Container(
       color: _backgroundColor,
