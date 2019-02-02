@@ -4,19 +4,14 @@ import 'package:hello_rectangle/unit.dart';
 
 final _backgroundColor = Colors.green[100];
 
-class CategoryScreen extends StatelessWidget {
+class CategoryScreen extends StatefulWidget {
   const CategoryScreen();
 
-  static const _categoryNames = <String>[
-    'Length',
-    'Area',
-    'Volume',
-    'Mass',
-    'Time',
-    'Digital Storage',
-    'Energy',
-    'Currency',
-  ];
+  @override
+  State<StatefulWidget> createState() => _CategoryScreenState();
+}
+
+class _CategoryScreenState extends State<CategoryScreen> {
 
   static const _baseColors = <Color>[
     Colors.teal,
@@ -27,6 +22,17 @@ class CategoryScreen extends StatelessWidget {
     Colors.greenAccent,
     Colors.purpleAccent,
     Colors.red,
+  ];
+
+  static const _categoryNames = <String>[
+    'Length',
+    'Area',
+    'Volume',
+    'Mass',
+    'Time',
+    'Digital Storage',
+    'Energy',
+    'Currency',
   ];
 
   Widget _buildCategoryWidgets(List<Widget> categories) {
@@ -53,12 +59,12 @@ class CategoryScreen extends StatelessWidget {
 
     for (var i = 0; i < _categoryNames.length; i++) {
       categories.add(Category(
-          name: _categoryNames[i],
-          color: _baseColors[i],
-          iconLocation: Icons.cake,
-          units: _retrieveUnitList(_categoryNames[i]),
+        name: _categoryNames[i],
+        color: _baseColors[i],
+        iconLocation: Icons.cake,
+        units: _retrieveUnitList(_categoryNames[i]),
       ));
-      }
+    }
 
     final listView = Container(
       color: _backgroundColor,
@@ -72,8 +78,8 @@ class CategoryScreen extends StatelessWidget {
       title: Text(
         'Unit Converter',
         style: TextStyle(
-          color: Colors.black,
-          fontSize: 30
+            color: Colors.black,
+            fontSize: 30
         ),
       ),
       centerTitle: true,
